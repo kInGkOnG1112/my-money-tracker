@@ -1,0 +1,4 @@
+# Exclude DB
+instance/
+instance/site.db
+
