@@ -86,7 +86,7 @@ a.sidebar-link {
     border-radius: 7px;
 }
 
-.sidebar-item:hover {
+.sidebar-item:hover, .sidebar-item.active {
     background-color: #f9f6f630;
 }
 

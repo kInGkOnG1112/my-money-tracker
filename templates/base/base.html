@@ -20,52 +20,8 @@
 </style>
 <body>
     <div class="d-flex">
-        <aside id="sidebar" class="sidebar-toggle">
-            <div class="sidebar-logo">
-                <a href="#">MyMoney</a>
-            </div>
-            <ul class="sidebar-nav p-0">
-                <li class="sidebar-item ">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-dashboard"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Records</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-graph"></i>
-                        <span>Analysis</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-wallet"></i>
-                        <span>Accounts</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-tag"></i>
-                        <span>Categories</span>
-                    </a>
-                </li>
-            </ul>
-            <!-- Sidebar Navigation Ends -->
-            <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
-                    <i class="lni lni-exit"></i>
-                    <span>Logout</span>
-                </a>
-            </div>
-        </aside>
-        <!-- Sidebar Ends -->
-        <!-- Main Component -->
+        {% block menu %}
+        {% endblock menu %}
         <div class="main">
             <nav class="navbar navbar-expand">
                 <button class="toggler-btn" type="button">

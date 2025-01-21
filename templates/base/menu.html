@@ -1,0 +1,21 @@
+<aside id="sidebar" class="sidebar-toggle">
+    <div class="sidebar-logo">
+        <a href="#">MyMoney</a>
+    </div>
+    <ul class="sidebar-nav p-0">
+        {% for g_navigation in context_data.g_navigations %}
+            <li class="sidebar-item {% if g_navigation.is_active %}active{% endif %} ">
+                <a href="{{ g_navigation.url }}" class="sidebar-link">
+                    <i class="{{ g_navigation.icon_class }}"></i>
+                    <span>{{ g_navigation.name }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="sidebar-footer">
+        <a href="#" class="sidebar-link">
+            <i class="lni lni-exit"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</aside>
