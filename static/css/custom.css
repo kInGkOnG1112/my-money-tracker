@@ -160,6 +160,35 @@ a.sidebar-link:hover i{
     border-radius: 10px;
 }
 
+.image-select-container {
+    display: flex;
+    gap: 2px;
+    flex-wrap: wrap;
+    padding: 0.65rem 1rem;
+    border: 1px solid #E4E6EF;
+    border-radius: 0.42rem;
+    height: 180px;
+    overflow: auto;
+}
+.image-option {
+    border: 3px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.image-option img {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.image-option input[type="radio"] {
+    display: none;
+}
+.image-option input[type="radio"]:checked + img {
+    border: 3px solid #007bff; /* Highlight selected image */
+}
+
 /* Screen size less than 768px */
 
 @media (max-width:768px) {
