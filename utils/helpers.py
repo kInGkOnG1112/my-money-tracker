@@ -61,3 +61,39 @@ def get_navigation_items():
         },
     ]
     return navigation_items
+
+
+class GenericResponse:
+    """
+    This class is for handles the
+    generic response of each request.
+
+    Also this serve as the base class for
+    responses to avoid redundancy
+    """
+
+    @staticmethod
+    def error(message, user_message='Unable to process at the moment!'):
+        """
+        This function returns for all error messages
+        :param message:
+        :param user_message:
+        :return: json
+        """
+        return {
+            'success': False,
+            'error': message,
+            'message': user_message
+        }
+
+    @staticmethod
+    def success(message):
+        """
+        This function returns for all success responses
+        :param message:
+        :return:
+        """
+        return {
+            'success': True,
+            'message': message
+        }

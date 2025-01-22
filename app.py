@@ -3,6 +3,7 @@ import configparser
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 # ^ Importing all the libraries and modules dependencies
 
@@ -28,4 +29,4 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = config.get('config-settings', 'db
 
 # Initialize the SQLAlchemy object
 db = SQLAlchemy(app)
-
+migrate = Migrate(app, db)

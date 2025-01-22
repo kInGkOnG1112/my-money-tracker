@@ -27,6 +27,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.Integer, nullable=False)
     category_name = db.Column(db.String(25), unique=True, nullable=False)
+    icon = db.Column(db.String(200), unique=True, nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
