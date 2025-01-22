@@ -31,7 +31,7 @@ def records():
         "page": "records"
     }
     context = get_global_context(context)
-    return render_template("pages/home.html", context_data=context)
+    return render_template("pages/records.html", context_data=context)
 
 
 @app.route("/analysis")
@@ -45,7 +45,7 @@ def analysis():
         "page": "analysis"
     }
     context = get_global_context(context)
-    return render_template("pages/home.html", context_data=context)
+    return render_template("pages/analysis.html", context_data=context)
 
 
 @app.route("/accounts")
@@ -59,7 +59,7 @@ def accounts():
         "page": "accounts"
     }
     context = get_global_context(context)
-    return render_template("pages/home.html", context_data=context)
+    return render_template("pages/accounts.html", context_data=context)
 
 
 @app.route("/categories")
@@ -73,4 +73,4 @@ def categories():
         "page": "categories"
     }
     context = get_global_context(context)
-    return render_template("pages/home.html", context_data=context)
+    return render_template("pages/categories.html", context_data=context)

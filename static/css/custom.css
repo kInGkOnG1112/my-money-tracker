@@ -73,11 +73,20 @@ a {
 
 a.sidebar-link {
     padding: .625rem 1.625rem;
-    color: #FFF;
+    color: rgba(255, 255, 255, 0.63);
     position: relative;
     transition: all 0.35s;
     display: block;
-    font-size: 1rem;
+    font-size: 1.15rem;
+}
+a.sidebar-link i {
+    color: rgba(255, 255, 255, 0.63);
+    margin-right: 12px;
+    margin-top: .25rem;
+}
+a.sidebar-link:hover,
+a.sidebar-link:hover i{
+    color: #FFF;
 }
 
 .sidebar-item{
@@ -86,8 +95,13 @@ a.sidebar-link {
     border-radius: 7px;
 }
 
-.sidebar-item:hover, .sidebar-item.active {
+.sidebar-item:hover,
+.sidebar-item.active {
     background-color: #f9f6f630;
+}
+.sidebar-item.active a,
+.sidebar-item.active > a.sidebar-link i{
+    color: #FFFFFF;
 }
 
 .sidebar-link[data-bs-toggle="collapse"]::after {
@@ -106,6 +120,44 @@ a.sidebar-link {
 .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
     transform: rotate(45deg);
     transition: all .2s ease-out;
+}
+
+.card.card-custom > .card-header .card-title{
+    width: 100%;
+}
+.card.card-custom > .card-header .card-toolbar{
+    margin-left: auto !important;
+}
+.card.card-custom{
+    box-shadow: 0 0 30px 0 rgba(82, 63, 105, 0.14) !important;
+    border: 1px rgba(82, 63, 105, 0.14) !important;
+}
+
+.table.table-custom th {
+    color: #3F4254;
+    background-color: #F3F6F9;
+    border-color: #EBEDF3;
+}
+.table.table-custom thead th,
+.table.table-custom thead td {
+    font-weight: 600;
+    font-size: 1rem;
+    border-bottom-width: 1px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.table.table-custom th,
+.table.table-custom td {
+    padding: 1rem 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #EBEDF3;
+}
+
+.custom-round-border-10{
+    text-decoration:none;
+    border: 1px solid #5555;
+    border-radius: 10px;
 }
 
 /* Screen size less than 768px */
