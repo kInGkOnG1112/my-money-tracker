@@ -5,5 +5,303 @@
 {% endblock menu %}
 
 {% block content %}
-{{ context_data.title }}
+<div class="row">
+    <div class="col-12 mb-5">
+        <div class="card card-custom">
+            <div class="card-header ">
+                <div class="card-title">
+                    <span class="card-icon mt-1">
+                        <i class="lni lni-wallet text-primary"></i>
+                    </span>
+                    <h3 class="card-label">
+                        Accounts
+                        <small>Generated</small>
+                    </h3>
+                    <div class="card-toolbar">
+                        <div class="example-tools justify-content-center">
+                            <button class="btn font-weight-bolder font-size-sm w-100 btn-primary"
+                                 data-bs-toggle="modal" data-bs-target="#createAccountModal">
+                                <i class="lni lni-plus"></i>
+                                Add New Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="flex-row">
+                    <div class="alert alert-custom alert-default mb-5" role="alert">
+                        <div class="alert-icon">
+                            <span class="svg-icon svg-icon-primary svg-icon-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="0" y="0" width="24" height="24"></rect>
+                                        <path d="M7.07744993,12.3040451 C7.72444571,13.0716094 8.54044565,13.6920474 9.46808594,14.1079953 L5,23 L4.5,18 L7.07744993,12.3040451 Z M14.5865511,14.2597864 C15.5319561,13.9019016 16.375416,13.3366121 17.0614026,12.6194459 L19.5,18 L19,23 L14.5865511,14.2597864 Z M12,3.55271368e-14 C12.8284271,3.53749572e-14 13.5,0.671572875 13.5,1.5 L13.5,4 L10.5,4 L10.5,1.5 C10.5,0.671572875 11.1715729,3.56793164e-14 12,3.55271368e-14 Z" fill="#000000" opacity="0.3"></path>
+                                        <path d="M12,10 C13.1045695,10 14,9.1045695 14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 C10,9.1045695 10.8954305,10 12,10 Z M12,13 C9.23857625,13 7,10.7614237 7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 C17,10.7614237 14.7614237,13 12,13 Z" fill="#000000" fill-rule="nonzero"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="alert-text">
+                            Here is the filtration form for the list of all Accounts. Please review and apply the necessary filters accordingly.
+                        </div>
+                    </div>
+                    <div class="form-row p-0">
+                        <div class="col-12 col-md-12 mb-5">
+                            <div class="input-icon">
+                                <input type="text" class="form-control" placeholder="Search.." id="kt_datatable_search_query">
+                                <span><i class="lni lni-search text-muted"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="bg-light-danger px-6 py-8 rounded-xl">
+                                <div class="d-flex align-items-start">
+                                    <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                <path d="M12.9336061,16.072447 L19.36,10.9564761 L19.5181585,10.8312381 C20.1676248,10.3169571 20.2772143,9.3735535 19.7629333,8.72408713 C19.6917232,8.63415859 19.6104327,8.55269514 19.5206557,8.48129411 L12.9336854,3.24257445 C12.3871201,2.80788259 11.6128799,2.80788259 11.0663146,3.24257445 L4.47482784,8.48488609 C3.82645598,9.00054628 3.71887192,9.94418071 4.23453211,10.5925526 C4.30500305,10.6811601 4.38527899,10.7615046 4.47382636,10.8320511 L4.63,10.9564761 L11.0659024,16.0730648 C11.6126744,16.5077525 12.3871218,16.5074963 12.9336061,16.072447 Z" fill="#000000" fill-rule="nonzero"></path>
+                                                <path d="M11.0563554,18.6706981 L5.33593024,14.122919 C4.94553994,13.8125559 4.37746707,13.8774308 4.06710397,14.2678211 C4.06471678,14.2708238 4.06234874,14.2738418 4.06,14.2768747 L4.06,14.2768747 C3.75257288,14.6738539 3.82516916,15.244888 4.22214834,15.5523151 C4.22358765,15.5534297 4.2250303,15.55454 4.22647627,15.555646 L11.0872776,20.8031356 C11.6250734,21.2144692 12.371757,21.2145375 12.909628,20.8033023 L19.7677785,15.559828 C20.1693192,15.2528257 20.2459576,14.6784381 19.9389553,14.2768974 C19.9376429,14.2751809 19.9363245,14.2734691 19.935,14.2717619 L19.935,14.2717619 C19.6266937,13.8743807 19.0546209,13.8021712 18.6572397,14.1104775 C18.654352,14.112718 18.6514778,14.1149757 18.6486172,14.1172508 L12.9235044,18.6705218 C12.377022,19.1051477 11.6029199,19.1052208 11.0563554,18.6706981 Z" fill="#000000" opacity="0.3"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="text-danger ml-3 font-weight-bold font-size-h1-xl mt-2">10,000</span>
+                                </div>
+                                <a href="#" class="text-danger font-weight-bold font-size-sm mt-2">
+                                    TOTAL EXPENSE SO FAR
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="bg-light-success px-6 py-8 rounded-xl">
+                                <div class="d-flex align-items-start">
+                                    <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
+                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                <path d="M12.9336061,16.072447 L19.36,10.9564761 L19.5181585,10.8312381 C20.1676248,10.3169571 20.2772143,9.3735535 19.7629333,8.72408713 C19.6917232,8.63415859 19.6104327,8.55269514 19.5206557,8.48129411 L12.9336854,3.24257445 C12.3871201,2.80788259 11.6128799,2.80788259 11.0663146,3.24257445 L4.47482784,8.48488609 C3.82645598,9.00054628 3.71887192,9.94418071 4.23453211,10.5925526 C4.30500305,10.6811601 4.38527899,10.7615046 4.47382636,10.8320511 L4.63,10.9564761 L11.0659024,16.0730648 C11.6126744,16.5077525 12.3871218,16.5074963 12.9336061,16.072447 Z" fill="#000000" fill-rule="nonzero"></path>
+                                                <path d="M11.0563554,18.6706981 L5.33593024,14.122919 C4.94553994,13.8125559 4.37746707,13.8774308 4.06710397,14.2678211 C4.06471678,14.2708238 4.06234874,14.2738418 4.06,14.2768747 L4.06,14.2768747 C3.75257288,14.6738539 3.82516916,15.244888 4.22214834,15.5523151 C4.22358765,15.5534297 4.2250303,15.55454 4.22647627,15.555646 L11.0872776,20.8031356 C11.6250734,21.2144692 12.371757,21.2145375 12.909628,20.8033023 L19.7677785,15.559828 C20.1693192,15.2528257 20.2459576,14.6784381 19.9389553,14.2768974 C19.9376429,14.2751809 19.9363245,14.2734691 19.935,14.2717619 L19.935,14.2717619 C19.6266937,13.8743807 19.0546209,13.8021712 18.6572397,14.1104775 C18.654352,14.112718 18.6514778,14.1149757 18.6486172,14.1172508 L12.9235044,18.6705218 C12.377022,19.1051477 11.6029199,19.1052208 11.0563554,18.6706981 Z" fill="#000000" opacity="0.3"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="text-success ml-3 font-weight-bold font-size-h1-xl mt-2">10,000</span>
+                                </div>
+                                <a href="#" class="text-success font-weight-bold font-size-sm mt-2">
+                                    TOTAL INCOME SO FAR
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-5">
+        <div class="card card-custom card-stretch">
+            <div class="card-header">
+                <div class="card-title mr-0">
+                    <h3 class="card-label">Savings</h3>
+                    <div class="card-toolbar">
+                        <div class="example-tools justify-content-center">
+                            <button class="btn btn-light-primary btn-hover-primary btn-sm btn-icon"
+                                 data-bs-toggle="modal" data-bs-target="#createRecordSelection">
+                                <i class="lni lni-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-50 symbol-light-success mr-5">
+                        <span class="symbol-label">
+                            <i class="lni lni-wallet font-size-h2"></i>
+                        </span>
+                    </div>
+                    <div class="d-flex flex-column flex-grow-1 font-weight-bold">
+                        <a href="#" class="text-success text-hover-primary font-weight-boldest  font-size-h3">10,000.00</a>
+                        <span class="text-muted font-size-sm">BALANCE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-5">
+        <div class="card card-custom card-stretch">
+            <div class="card-header">
+                <div class="card-title mr-0">
+                    <h3 class="card-label">Savings</h3>
+                    <div class="card-toolbar">
+                        <div class="example-tools justify-content-center">
+                            <button class="btn btn-light-primary btn-hover-primary btn-sm btn-icon"
+                                 data-bs-toggle="modal" data-bs-target="#createRecordSelection">
+                                <i class="lni lni-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-50 symbol-light-success mr-5">
+                        <span class="symbol-label">
+                            <i class="lni lni-wallet font-size-h2"></i>
+                        </span>
+                    </div>
+                    <div class="d-flex flex-column flex-grow-1 font-weight-bold">
+                        <a href="#" class="text-success text-hover-primary font-weight-boldest  font-size-h3">10,000.00</a>
+                        <span class="text-muted font-size-sm">BALANCE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-5">
+        <div class="card card-custom card-stretch">
+            <div class="card-header">
+                <div class="card-title mr-0">
+                    <h3 class="card-label">Savings</h3>
+                    <div class="card-toolbar">
+                        <div class="example-tools justify-content-center">
+                            <button class="btn btn-light-primary btn-hover-primary btn-sm btn-icon"
+                                 data-bs-toggle="modal" data-bs-target="#createRecordSelection">
+                                <i class="lni lni-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-50 symbol-light-success mr-5">
+                        <span class="symbol-label">
+                            <i class="lni lni-wallet font-size-h2"></i>
+                        </span>
+                    </div>
+                    <div class="d-flex flex-column flex-grow-1 font-weight-bold">
+                        <a href="#" class="text-success text-hover-primary font-weight-boldest  font-size-h3">10,000.00</a>
+                        <span class="text-muted font-size-sm">BALANCE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-5">
+        <div class="card card-custom card-stretch">
+            <div class="card-header">
+                <div class="card-title mr-0">
+                    <h3 class="card-label">Savings</h3>
+                    <div class="card-toolbar">
+                        <div class="example-tools justify-content-center">
+                            <button class="btn btn-light-primary btn-hover-primary btn-sm btn-icon"
+                                 data-bs-toggle="modal" data-bs-target="#createRecordSelection">
+                                <i class="lni lni-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-50 symbol-light-success mr-5">
+                        <span class="symbol-label">
+                            <i class="lni lni-wallet font-size-h2"></i>
+                        </span>
+                    </div>
+                    <div class="d-flex flex-column flex-grow-1 font-weight-bold">
+                        <a href="#" class="text-success text-hover-primary font-weight-boldest  font-size-h3">10,000.00</a>
+                        <span class="text-muted font-size-sm">BALANCE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-5">
+        <div class="card card-custom card-stretch">
+            <div class="card-header">
+                <div class="card-title mr-0">
+                    <h3 class="card-label">Savings</h3>
+                    <div class="card-toolbar">
+                        <div class="example-tools justify-content-center">
+                            <button class="btn btn-light-primary btn-hover-primary btn-sm btn-icon"
+                                 data-bs-toggle="modal" data-bs-target="#createRecordSelection">
+                                <i class="lni lni-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-50 symbol-light-success mr-5">
+                        <span class="symbol-label">
+                            <i class="lni lni-wallet font-size-h2"></i>
+                        </span>
+                    </div>
+                    <div class="d-flex flex-column flex-grow-1 font-weight-bold">
+                        <a href="#" class="text-success text-hover-primary font-weight-boldest  font-size-h3">10,000.00</a>
+                        <span class="text-muted font-size-sm">BALANCE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-5">
+        <div class="card card-custom card-stretch">
+            <div class="card-header">
+                <div class="card-title mr-0">
+                    <h3 class="card-label">Savings</h3>
+                    <div class="card-toolbar">
+                        <div class="example-tools justify-content-center">
+                            <button class="btn btn-light-primary btn-hover-primary btn-sm btn-icon"
+                                 data-bs-toggle="modal" data-bs-target="#createRecordSelection">
+                                <i class="lni lni-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-50 symbol-light-success mr-5">
+                        <span class="symbol-label">
+                            <i class="lni lni-wallet font-size-h2"></i>
+                        </span>
+                    </div>
+                    <div class="d-flex flex-column flex-grow-1 font-weight-bold">
+                        <a href="#" class="text-success text-hover-primary font-weight-boldest  font-size-h3">10,000.00</a>
+                        <span class="text-muted font-size-sm">BALANCE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="createAccountModal"  tabindex="-1" role="dialog"
+     data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Account Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row justify-content-center">
+                    <div class="col-lg-12 mt-2">
+                        <label for="name">Name: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name"  placeholder="Account's Name">
+                    </div>
+                    <div class="col-lg-12 mt-2">
+                        <label for="initial_amount">Initial Amount: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="initial_amount" name="initial_amount"  placeholder="0.00">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
