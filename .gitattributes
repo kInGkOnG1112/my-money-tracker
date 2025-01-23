@@ -3,3 +3,4 @@
 *.md linguist-documentation
 *.min.js linguist-vendored
 *.css linguist-vendored
+*.html linguist-vendored
