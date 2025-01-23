@@ -1,13 +1,14 @@
 """
 importing all the libraries and modules dependencies
 """
-from flask import render_template
-from app import app
+from flask import render_template, Blueprint
 from utils.helpers import get_global_context
 
+main = Blueprint('main', __name__)
 
-@app.route("/")
-def home():
+
+@main.route("/")
+def dashboard():
     """
     Renders the home page
     :return: .html with its context
@@ -20,7 +21,7 @@ def home():
     return render_template("pages/home.html", context_data=context)
 
 
-@app.route("/records")
+@main.route("/records")
 def records():
     """
     Renders the records page
@@ -34,7 +35,7 @@ def records():
     return render_template("pages/records.html", context_data=context)
 
 
-@app.route("/analysis")
+@main.route("/analysis")
 def analysis():
     """
     Renders the analysis page
@@ -48,7 +49,7 @@ def analysis():
     return render_template("pages/analysis.html", context_data=context)
 
 
-@app.route("/accounts")
+@main.route("/accounts")
 def accounts():
     """
     Renders the accounts page
@@ -62,7 +63,7 @@ def accounts():
     return render_template("pages/accounts.html", context_data=context)
 
 
-@app.route("/categories")
+@main.route("/categories")
 def categories():
     """
     Renders the categories page

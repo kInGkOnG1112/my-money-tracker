@@ -1,5 +1,5 @@
 import datetime
-from app import db
+from extensions import db
 
 
 # We are creating 3 separate tables - represented by class-based models

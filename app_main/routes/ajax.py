@@ -2,13 +2,15 @@
 importing all the libraries and modules dependencies
 """
 from urllib import request
-from flask import request, jsonify
-from app import app, db
-from app_main.models import Category
+from flask import request, jsonify, Blueprint
+from extensions import db
+from ..models import Category
 from utils.helpers import GenericResponse
 
+ajax = Blueprint('ajax', __name__)
 
-@app.route('/ajax/add-category', methods=['POST'])
+
+@ajax.route('/ajax/add-category', methods=['POST'])
 def add_category():
     """
     Adds a new category entry to the database
