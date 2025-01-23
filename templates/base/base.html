@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static/css/bootstrap-5.3.3.min.css" type="text/css" >
     <link rel="stylesheet" href="/static/css/custom.css" type="text/css" >
     <link rel="stylesheet" href="/static/css/style.bundle.css" type="text/css" >
+    <link rel="stylesheet" href="/static/css/plugins.bundle.css" type="text/css" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,6 +69,16 @@
                 'component_id': 'divDataList',
                 'request_url': ''
             }, overrides)
+        }
+        function debounce(callback, delay) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                let context = this;
+                timeout = setTimeout(function() {
+                    callback.apply(context, args);
+                }, delay);
+            };
         }
 
         toggler.addEventListener("click", function () {

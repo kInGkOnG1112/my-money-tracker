@@ -49,7 +49,7 @@ class AjaxRequest {
     ){
         const divLoader = `
             <div class="col-lg-12 pl0">
-                <div class="d-flex justify-content-center align-items-center p100">
+                <div class="d-flex justify-content-center align-items-center p-15">
                     <div class="spinner spinner-primary spinner-lg mr-15"></div>
                     <label>Loading</label>
                 </div>

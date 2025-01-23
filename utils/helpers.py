@@ -97,3 +97,29 @@ class GenericResponse:
             'success': True,
             'message': message
         }
+
+
+def get_pagination_details(page_number, page_size, queryset):
+    """
+    This function returns a pagination details for a queryset.
+    :param page_number: page number
+    :param page_size: total page size
+    :param queryset: actual query object
+    :return: queryset and pagination details
+    """
+    start = (page_size * page_number) - page_size
+    end = page_size * page_number
+    total = queryset.count()
+    queryset = queryset[start:end]
+    pages = max(1, -(-total // page_size))
+
+    pagination_details = {
+        'page': page_number,
+        'perpage': page_size,
+        'start': start,
+        'end': end,
+        'total_page': pages,
+        'total': total,
+        'pages': range(page_number, (1 + pages)),
+    }
+    return queryset, pagination_details

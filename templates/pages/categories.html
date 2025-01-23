@@ -47,18 +47,19 @@
             <div class="form-row p-0">
                 <div class="col-12 col-md-8 ">
                     <div class="input-icon">
-						<input type="text" class="form-control" placeholder="Search.." id="kt_datatable_search_query">
+						<input type="text" class="form-control" placeholder="Search.." id="searchQuery">
 						<span><i class="lni lni-search text-muted"></i></span>
 					</div>
                 </div>
                 <div class="col-12 col-md-4 ">
-                    <select class="form-control " id="exampleSelectl">
+                    <select class="form-control " id="selectType">
                         <option class="text-muted" label="Select Type" hidden=""></option>
-                        <option>Income</option>
-                        <option>Expense</option>
+                        <option value="">All</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
                     </select>
 			    </div>
-                <div class="col-12 mt-5">
+                <div class="col-12 mt-5" id="divDataList">
                     <table class="table table-custom">
                         <thead>
                             <tr>
@@ -187,5 +188,21 @@
             redirectionURL,
         )
     })
+
+    const searchQuery = $('#searchQuery')
+    const selectType = $('#selectType')
+
+    function handleInputChange() {
+        const defaultFormData = {
+            'search': searchQuery.val(),
+            'type': selectType.val(),
+            'request_url': '/ajax/get-category/list'
+        }
+        ajaxSubpageRequest(buildFormData(defaultFormData));
+    }
+    handleInputChange()
+
+    searchQuery.on('input', debounce(function() {handleInputChange()}, 500))
+    selectType.on('change', handleInputChange)
 </script>
 {% endblock %}
