@@ -1,3 +1,5 @@
 *.py linguist-language=Python
 *.js linguist-language=JavaScript
 *.md linguist-documentation
+*.min.js linguist-vendored
+*.css linguist-vendored
