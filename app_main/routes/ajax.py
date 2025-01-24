@@ -4,9 +4,9 @@ importing all the libraries and modules dependencies
 from urllib import request
 from flask import request, jsonify, Blueprint, render_template
 from extensions import db
-from ..models import Category
 from utils.helpers import GenericResponse, get_pagination_details
 from sqlalchemy import and_
+from ..models import Category, Account
 
 ajax = Blueprint('ajax', __name__)
 
@@ -121,3 +121,93 @@ def get_category_list():
         'pagination': pagination_details
     }
     return render_template('subpages/category-list.html', context_data=context)
+
+
+@ajax.route('/ajax/add-account', methods=['POST'])
+def add_account():
+    """
+    Adds a new account entry to the database
+    :return: json response with message and status
+    """
+    try:
+        if request.method == 'POST':
+            data = request.form
+            initial_amount = data.get('initial_amount').replace(',', '')
+
+            # Validate the account name existence
+            if Account.query.filter(Account.name == data.get('name')).first():
+                return jsonify(
+                    GenericResponse.error(
+                        user_message='Account name already exists!'
+                    )
+                )
+
+            new_account = Account(
+                name=data.get('name'),
+                balance=float(initial_amount),
+                icon=data.get('icon')
+            )
+            db.session.add(new_account)
+            db.session.commit()
+
+        return jsonify(
+            GenericResponse.success(
+                'Account has been successfully added.'
+            )
+        )
+    except Exception as e:
+        return jsonify(GenericResponse.error(str(e)))
+
+
+@ajax.route('/ajax/edit-account', methods=['POST'])
+def edit_account():
+    """
+    Update account data to the database
+    :return: json response with message and status
+    """
+    try:
+        if request.method == 'POST':
+            data = request.form
+            if Account.query.filter(and_(Account.name == data.get('_name'), Account.id != data.get('_id'))).first():
+                return jsonify(
+                    GenericResponse.error(
+                        user_message='Account name already exists!'
+                    )
+                )
+
+            account = Account.query.get_or_404(data.get('_id'))
+            account.name = data.get('_name')
+            account.balance = float(data.get('_initial_amount').replace(',', ''))
+            account.icon = data.get('_icon')
+            db.session.commit()
+
+        return jsonify(
+            GenericResponse.success(
+                'Account has been successfully updated.'
+            )
+        )
+    except Exception as e:
+        return jsonify(GenericResponse.error(str(e)))
+
+
+@ajax.route('/ajax/get-account/list')
+def get_account_list():
+    """
+    Get a list of all accounts
+    :return: html response as a subpage content
+    """
+    data = request.args
+    search = data.get('search')
+    page = int(data.get('page', 1))
+    perpage = int(data.get('perpage', 10))
+
+    query = Account.query
+    query = query.filter(Account.name.like(f'%{search}%')) if search else query
+    queryset, pagination_details = get_pagination_details(page, perpage, query)
+
+    context = {
+        'payload_data': data.to_dict(flat=True),
+        'queryset': queryset,
+        'pagination': pagination_details
+    }
+    return render_template('subpages/account-list.html', context_data=context)

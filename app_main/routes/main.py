@@ -55,9 +55,20 @@ def accounts():
     Renders the accounts page
     :return: .html with its context
     """
+    icon_list: list[str] = [
+        '/static/images/account_logo/bank.png',
+        '/static/images/account_logo/debit-card.png',
+        '/static/images/account_logo/master-card.jpg',
+        '/static/images/account_logo/money.png',
+        '/static/images/account_logo/paypal.jpg',
+        '/static/images/account_logo/piggy-bank.jpg',
+        '/static/images/account_logo/visa-card.png',
+        '/static/images/account_logo/wallet.png'
+    ]
     context = {
         "title": "Accounts",
-        "page": "accounts"
+        "page": "accounts",
+        "icon_list": icon_list
     }
     context = get_global_context(context)
     return render_template("pages/accounts.html", context_data=context)
@@ -69,7 +80,7 @@ def categories():
     Renders the categories page
     :return: .html with its context
     """
-    icon_list = [
+    icon_list: list[str] = [
         '/static/images/car.jpg',
         '/static/images/clothing.jpg',
         '/static/images/food.jpg',

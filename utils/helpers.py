@@ -8,9 +8,8 @@ def get_global_context(context):
     :param context: context in routes
     :return: merged context
     """
-    navigations = get_navigation_items()
     page = context.get("page")
-    filtered_navigations = [{**navigation, 'is_active': (page == navigation['id'])} for navigation in navigations]
+    filtered_navigations: list[dict] = [{**navigation, 'is_active': (page == navigation['id'])} for navigation in get_navigation_items()]
     global_context = {
         'g_navigations': filtered_navigations,
     }
@@ -23,7 +22,7 @@ def get_navigation_items():
     based on the number of pages
     :return: navigation list
     """
-    navigation_items = [
+    navigation_items: list[dict] = [
         {
             "name": "Dashboard",
             "id": "dashboard",
@@ -99,19 +98,18 @@ class GenericResponse:
         }
 
 
-def get_pagination_details(page_number, page_size, queryset):
+def get_pagination_details(page_number: int, page_size: int, queryset):
     """
     This function returns a pagination details for a queryset.
-    :param page_number: page number
-    :param page_size: total page size
+    :param page_number: page number (int)
+    :param page_size: total page size (int)
     :param queryset: actual query object
     :return: queryset and pagination details
     """
-    start = (page_size * page_number) - page_size
-    end = page_size * page_number
-    total = queryset.count()
-    queryset = queryset[start:end]
-    pages = max(1, -(-total // page_size))
+    start: int = (page_size * page_number) - page_size
+    end: int = page_size * page_number
+    total: int = queryset.count()
+    pages: int = max(1, -(-total // page_size))
 
     pagination_details = {
         'page': page_number,
@@ -122,4 +120,4 @@ def get_pagination_details(page_number, page_size, queryset):
         'total': total,
         'pages': range(page_number, (1 + pages)),
     }
-    return queryset, pagination_details
+    return queryset[start:end], pagination_details

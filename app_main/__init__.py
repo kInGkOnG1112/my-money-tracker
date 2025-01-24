@@ -65,3 +65,18 @@ def datetime_format(value, format='%B, %d, %Y %I:%M %p'):
 
     value = value.astimezone(pytz.timezone('Asia/Manila'))
     return value.strftime(format)
+
+
+# Add a custom filter to format decimal
+@app.template_filter('format_decimal')
+def format_decimal(value, precision=2):
+    if value is None or value == '':
+        return '0.00'
+
+    try:
+        # Convert to float, format with specified precision and apply thousands comma
+        formatted_value = f"{float(value):,.{precision}f}"
+    except (ValueError, TypeError):
+        return '0.00'  # In case of invalid value
+
+    return formatted_value

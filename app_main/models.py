@@ -37,6 +37,7 @@ class Category(db.Model):
 class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
+    icon = db.Column(db.String(200), unique=False, nullable=True)
     balance = db.Column(db.Numeric(10, 2), unique=False, nullable=False)
 
     def __repr__(self):
