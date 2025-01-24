@@ -1,5 +1,6 @@
 import os
 import configparser
+import pytz
 
 from flask import Flask
 from flask_admin import Admin
@@ -32,15 +33,6 @@ with open(config_path, 'r') as config_file:
 # Initialize app and defining the template and static folder
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
-
-# Add a custom filter to format datetime
-@app.template_filter('datetime')
-def datetime_format(value, format='%B, %d, %Y %I:%M %p'):
-    if isinstance(value, str):
-        value = datetime.fromisoformat(value)  # Parse string to datetime
-    return value.strftime(format)
-
-
 # Define all the configuration
 app.config["SECRET_KEY"] = config.get('config-settings', 'secret_key')
 app.config['SQLALCHEMY_DATABASE_URI'] = config.get('config-settings', 'db_uri')
@@ -62,3 +54,14 @@ admin.add_view(ModelView(models.Category, db.session))
 admin.add_view(ModelView(models.Record, db.session))
 admin.add_view(ModelView(models.Account, db.session))
 
+
+# Add a custom filter to format datetime
+@app.template_filter('datetime')
+def datetime_format(value, format='%B, %d, %Y %I:%M %p'):
+    if isinstance(value, str):
+        value = datetime.fromisoformat(value)  # Parse string to datetime
+    if value.tzinfo is None:
+        value = pytz.utc.localize(value)
+
+    value = value.astimezone(pytz.timezone('Asia/Manila'))
+    return value.strftime(format)

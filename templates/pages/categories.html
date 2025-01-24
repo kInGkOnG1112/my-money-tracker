@@ -122,9 +122,12 @@
     </div>
 </div>
 {% include 'modals/add-category.html' %}
+{% include 'modals/edit-category.html' %}
 {% endblock %}
 {% block javascript %}
 <script>
+    // This attaches a submit event handler to the form with the ID 'addCategoryForm'.
+    // The form is located inside the 'add-category.html' modal.
     $("#addCategoryForm").submit(function (e) {
         e.preventDefault()
         const redirectionURL = ''
@@ -140,6 +143,74 @@
         )
     })
 
+    // This attaches a submit event handler to the form with the ID 'updateCategoryForm'.
+    // The form is located inside the 'edit-category.html' modal.
+    $("#updateCategoryForm").submit(function (e) {
+        e.preventDefault()
+         Swal.fire({ allowOutsideClick: false,
+            title: 'Warning!',
+            text: 'This action could impact all related records of the category.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: "Update!",
+            confirmButtonColor: '#3085d6',
+        }).then((result) => {
+            if (result.value) {
+                const redirectionURL = ''
+                const submitBtn = $('#updateBtn')
+                const formData = new FormData($(this)[0]);
+                const requestURL = '/ajax/edit-category'
+
+                Ajax.postRequest(
+                    requestURL,
+                    formData,
+                    submitBtn,
+                    redirectionURL,
+                )
+            }
+        });
+
+    })
+
+    // Fetches all data for a specific category and populates the fields in the 'editCategory' modal.
+    function fetchCategoryData(dataParams) {
+        // Find and update the radio buttons and input fields based on the dataParams
+        document.querySelector(`input[name="_type"][value="${dataParams['type']}"]`).checked = true;
+        document.querySelector(`input[name="_icon"][value="${dataParams['icon']}"]`).checked = true;
+        document.querySelector('input[name="_category_name"]').value = dataParams['name'];
+        document.querySelector('input[name="_id"]').value = dataParams['id'];
+    }
+
+    // This function deletes/removes a specific category using the provided 'id' parameter
+    // It also displays a confirmation prompt before proceeding with the deletion
+    function deleteCategory(id) {
+        Swal.fire({ allowOutsideClick: false,
+            title: 'Warning!',
+            text: 'This action will permanently delete the category and all associated records.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: "Delete!",
+            confirmButtonColor: '#d33',
+        }).then((result) => {
+            if (result.value) {
+
+                const redirectionURL = ''
+                const requestURL = '/ajax/delete-category'
+                const formData = new FormData();
+                formData.append('id', id)
+
+                Ajax.postRequest(
+                    requestURL,
+                    formData,
+                    '',
+                    redirectionURL,
+                )
+            }
+        });
+    }
+
+    // The following code is used to list and filter all the categories.
+    // Get references to the search input and type selection elements.
     const searchQuery = $('#searchQuery')
     const selectType = $('#selectType')
 

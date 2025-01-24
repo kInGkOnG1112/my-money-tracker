@@ -6,6 +6,7 @@ from flask import request, jsonify, Blueprint, render_template
 from extensions import db
 from ..models import Category
 from utils.helpers import GenericResponse, get_pagination_details
+from sqlalchemy import and_
 
 ajax = Blueprint('ajax', __name__)
 
@@ -19,6 +20,14 @@ def add_category():
     try:
         if request.method == 'POST':
             data = request.form
+
+            if Category.query.filter(Category.category_name == data.get('name')).first():
+                return jsonify(
+                    GenericResponse.error(
+                        user_message='Category name already exists!'
+                    )
+                )
+
             new_category = Category(
                 type=data.get('type'),
                 category_name=data.get('name'),
@@ -29,7 +38,60 @@ def add_category():
 
         return jsonify(
             GenericResponse.success(
-                'Category was successfully added.'
+                'Category has been successfully added.'
+            )
+        )
+    except Exception as e:
+        return jsonify(GenericResponse.error(str(e)))
+
+
+@ajax.route('/ajax/edit-category', methods=['POST'])
+def edit_category():
+    """
+    Adds a new category entry to the database
+    :return: json response with message and status
+    """
+    try:
+        if request.method == 'POST':
+            data = request.form
+            if Category.query.filter(and_(Category.category_name == data.get('_category_name'), Category.id == data.get('id'))).first():
+                return jsonify(
+                    GenericResponse.error(
+                        user_message='Category name already exists!'
+                    )
+                )
+
+            category = Category.query.get_or_404(data.get('_id'))
+            category.category_name = data.get('_category_name')
+            category.type = data.get('_type')
+            category.icon = data.get('_icon')
+            db.session.commit()
+
+        return jsonify(
+            GenericResponse.success(
+                'Category has been successfully updated.'
+            )
+        )
+    except Exception as e:
+        return jsonify(GenericResponse.error(str(e)))
+
+
+@ajax.route('/ajax/delete-category', methods=['POST'])
+def delete_category():
+    """
+    Delete category data from the database
+    :return: json response with message and status
+    """
+    try:
+        if request.method == 'POST':
+            data = request.form
+            category = Category.query.get_or_404(data.get('id'))
+            db.session.delete(category)
+            db.session.commit()
+
+        return jsonify(
+            GenericResponse.success(
+                'Category has been successfully deleted!'
             )
         )
     except Exception as e:

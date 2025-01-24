@@ -1,23 +1,24 @@
-<div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="updateCategoryModal" tabindex="-1" role="dialog"
      data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"  role="document">
-        <form id="addCategoryForm">
+        <form id="updateCategoryForm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-row justify-content-center">
+                        <input type="hidden" name="_id" id="_id">
                         <div class="col-lg-12 mt-2" data-select2-id="10">
                             <div class="radio-inline">
                                 <label class="radio radio-lg">
-                                    <input type="radio" checked="checked" value="expense" name="type"/>
+                                    <input type="radio" checked="checked" value="expense" name="_type"/>
                                     <span></span>
                                     Expense
                                 </label>
                                 <label class="radio radio-lg">
-                                    <input type="radio" name="type" value="income"/>
+                                    <input type="radio" name="_type" value="income"/>
                                     <span></span>
                                     Income
                                 </label>
@@ -25,14 +26,14 @@
                         </div>
                         <div class="col-lg-12 mt-2" data-select2-id="10">
                             <label for="name">Name: <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                            <input type="text" class="form-control" id="_category_name" name="_category_name" placeholder="Name">
                         </div>
                         <div class="col-lg-12 mt-2">
                             <label for="notes">Icons: </label>
                             <div class="image-select-container">
                                 {% for icon in context_data.icon_list %}
                                     <label class="image-option">
-                                        <input type="radio" name="icon" {% if loop.index == 1 %}checked{% endif %} value="{{ icon }}">
+                                        <input type="radio" name="_icon" {% if loop.index == 1 %}checked{% endif %} value="{{ icon }}">
                                         <img src="{{icon}}" alt="Image {{ loop.index }}">
                                     </label>
                                 {% endfor %}
@@ -42,7 +43,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" id="submitBtn" class="btn btn-primary">Save</button>
+                    <button type="submit" id="updateBtn" class="btn btn-primary">Update</button>
                 </div>
             </div>
         </form>

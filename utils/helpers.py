@@ -68,12 +68,12 @@ class GenericResponse:
     This class is for handles the
     generic response of each request.
 
-    Also this serve as the base class for
+    Also, this serve as the base class for
     responses to avoid redundancy
     """
 
     @staticmethod
-    def error(message, user_message='Unable to process at the moment!'):
+    def error(message=None, user_message='Unable to process at the moment!'):
         """
         This function returns for all error messages
         :param message:
@@ -82,7 +82,7 @@ class GenericResponse:
         """
         return {
             'success': False,
-            'error': message,
+            'error': message if message else user_message,
             'message': user_message
         }
 

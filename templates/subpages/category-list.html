@@ -27,7 +27,9 @@
                 <span class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">{{ data.date_created | datetime }}</span>
             </td>
             <td class="align-middle">
-                <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                <a class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
+                   data-bs-toggle="modal" data-bs-target="#updateCategoryModal"
+                    onclick="fetchCategoryData({'id': '{{ data.id }}', 'icon': '{{ data.icon }}', 'type': '{{ data.type }}', 'name': '{{ data.category_name }}'})">
                     <span class="svg-icon svg-icon-md svg-icon-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                             <title>View Record</title>
@@ -39,7 +41,7 @@
                         </svg>
                     </span>
                 </a>
-                <a href="#" class="btn btn-icon btn-light btn-hover-danger btn-sm">
+                <button onclick="deleteCategory('{{ data.id }}')" class="btn btn-icon btn-light btn-hover-danger btn-sm">
                     <span class="svg-icon svg-icon-md svg-icon-danger">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                             <title>Delete Record</title>
@@ -50,7 +52,7 @@
                             </g>
                         </svg>
                     </span>
-                </a>
+                </button>
             </td>
         </tr>
         {% endfor %}
